@@ -1,0 +1,90 @@
+I want to develop backend application for book reservations in a public laboratory. i want to use NestJS, mariadb, jwt, bcrypt, and typeorm. mainly normal user can see list of all books or according to specific category even if the book is reserved. User can reserve books and choose the reservation duration by days. the same book can be available with multiple copies. The laboratory chief can get reports about reversed books on a specific day, books that exceeded the return date, and so on. Of course, authentication and authorization will be used if needed. If a user exceeds the return date, an automatic mail should be sent to him, reminding him to return the book. Keep this information in your mind and I will start asking you questions about this app. The first question is, what endpoints do I need for this app?
+
+### User Registration
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "username": "adnan1",
+  "email": "adnan1@example.com",
+  "password": "password"
+}
+
+### User Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "username": "adnan1",
+  "password": "password"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Get All Books
+GET http://localhost:3000/books
+
+### Get Books on specific gategory
+GET http://localhost:3000/books?category=Literature&search=Gatsby
+
+### Get Book Details
+GET http://localhost:3000/books/1
+
+### Reserve a Book
+POST http://localhost:3000/reservations
+Content-Type: application/json
+
+{
+  "bookId": 1,
+  "userId": 123,
+  "durationInDays": 7
+}
+
+### Get User Reservations
+GET http://localhost:3000/reservations?userId=123
+
+### Cancel a Reservation
+DELETE http://localhost:3000/reservations/1
+
+### Get Reserved Books on a Specific Date
+GET http://localhost:3000/admin/reservations/date/2025-03-01
+
+### Get Books Exceeding Return Date
+GET http://localhost:3000/admin/reservations/overdue
+
+### Get Books by Category
+GET http://localhost:3000/admin/books/category/Literature
+
+### Send Reminder Email for Overdue Book
+POST http://localhost:3000/admin/send-reminder/2
+
+### Get All Users (Admin)
+GET http://localhost:3000/admin/users
+
+### Get Categories
+GET http://localhost:3000/categories
+
+### Get Book Copies Availability
+GET http://localhost:3000/books/1/copies
+
+### Refresh JWT Token
+POST http://localhost:3000/auth/refresh-token
+Content-Type: application/json
+
+{
+  "refresh_token": "your_refresh_token_here"
+}
+
+
+
