@@ -9,12 +9,27 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
-  ) {}
+  ) { }
 
   async create(username: string, email: string, password: string): Promise<User> {
     const user = this.usersRepository.create({ username, email, password });
     return this.usersRepository.save(user);
   }
+
+
+  async findByUsernameOrPassword(identifier: string): Promise<User | null> {
+    console.log("findByUsername called in user service")
+
+    return this.usersRepository.findOne({
+      where: [
+        { email: identifier },
+        { username: identifier }
+      ]
+    });
+  }
+
+
+
 
   async findByUsername(username: string): Promise<User | null> {
     console.log("findByUsername called in user service")
@@ -36,7 +51,7 @@ export class UserService {
       relations: ['reservations'], // Include related reservations if needed
     });
   }
-  
 
-  
+
+
 }

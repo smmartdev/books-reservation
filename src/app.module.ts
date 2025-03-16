@@ -34,8 +34,7 @@ import { Reservation } from './reservation/reservation.entity';
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_DATABASE'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        // entities: [User,Book,BookCopies,RefreshToken,Category,Reservation],
-
+        migrations: [__dirname + '/migrations/*.ts'], // Path to your migrations
         synchronize: configService.get<boolean>('DB_SYNC', false),
       }),
     }),

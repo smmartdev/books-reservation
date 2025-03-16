@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Book } from './book.entity';
 import { BookCopies } from './book-copy.entity';
+import { Category } from './CategoryEnum';
 
 
 @Injectable()
@@ -16,21 +17,22 @@ export class BookService {
   ) { }
 
   async findAll(): Promise<Book[]> {
-    return this.booksRepository.find({ relations: ['category'] });
+    console.log("findAll called in book service")
+    return this.booksRepository.find();
+
   }
 
   
-  async findBooksByCategory(category: string): Promise<Book[]> { 
+  async findBooksByCategory(category: Category): Promise<Book[]> { 
     return this.booksRepository.find({
       where: { category }, // Directly compare the category string
     });
   }
   
 
-  async findById(id: number): Promise<Book | null> {
+  async findBookById(id: number): Promise<Book | null> {
     return this.booksRepository.findOne({
       where: { id },
-      relations: ['category'],
     });
   }
 

@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { BookCopies } from './book-copy.entity';
+import { Category } from './CategoryEnum';
 
 @Entity()
 export class Book {
@@ -13,7 +14,13 @@ export class Book {
   author: string;
 
   @Column()
-  category: string;
+  availableCopies: number;
+  
+  @Column({
+    type: 'enum',
+    enum: Category,
+  })
+  category: Category;
 
   @OneToMany(() => BookCopies, (copy) => copy.book)
   copies: BookCopies[];

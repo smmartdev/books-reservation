@@ -99,11 +99,12 @@ export class AuthService {
   //   };
   // }
 
-  async login(username: string, password: string) {
+  async login(identifier: string, password: string) {
     console.log("Login called in auth service");
-    console.log({password});
     
-    const user = await this.userService.findByUsername(username);
+
+    
+    const user = await this.userService.findByUsernameOrPassword(identifier);
     console.log("User found:", user);
 
     if (!user) {

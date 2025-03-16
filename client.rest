@@ -1,12 +1,11 @@
-I want to develop backend application for book reservations in a public laboratory. i want to use NestJS, mariadb, jwt, bcrypt, and typeorm. mainly normal user can see list of all books or according to specific category even if the book is reserved. User can reserve books and choose the reservation duration by days. the same book can be available with multiple copies. The laboratory chief can get reports about reversed books on a specific day, books that exceeded the return date, and so on. Of course, authentication and authorization will be used if needed. If a user exceeds the return date, an automatic mail should be sent to him, reminding him to return the book. Keep this information in your mind and I will start asking you questions about this app. The first question is, what endpoints do I need for this app?
-
+I want to develop backend application for book reservations in a public laboratory. i want to use NestJS, mariadb, jwt, bcrypt, and typeorm. mainly normal user can see list of all books or according to specific category even if the book is reserved. User can reserve books and choose the reservation duration by days. the same book can be available with multiple copies if a copy of the book has been reserved then it should not be available for reservation until it returned back . The laboratory chief can get reports about reversed books on a specific day, books that exceeded the return date, and so on. Of course, authentication and authorization will be used if needed. If a user exceeds the return date, an automatic mail should be sent to him, reminding him to return the book. Keep this information in your mind and I will start asking you questions about this app.  
 ### User Registration
 POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-  "username": "adnan1",
-  "email": "adnan1@example.com",
+  "username": "asad",
+  "email": "asad@gmail.com",
   "password": "password"
 }
 
@@ -19,27 +18,17 @@ Content-Type: application/json
   "password": "password"
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### Get All Books
 GET http://localhost:3000/books
 
 ### Get Books on specific gategory
-GET http://localhost:3000/books?category=Literature&search=Gatsby
+GET http://localhost:3000/books?category=history
 
-### Get Book Details
-GET http://localhost:3000/books/1
+### Get Books by search in authr or book name
+GET http://localhost:3000/books?search=c plus plus
+
+### Get Book Details by id
+GET http://localhost:3000/books/2
 
 ### Reserve a Book
 POST http://localhost:3000/reservations
@@ -47,7 +36,7 @@ Content-Type: application/json
 
 {
   "bookId": 1,
-  "userId": 123,
+  "userId": 8,
   "durationInDays": 7
 }
 
